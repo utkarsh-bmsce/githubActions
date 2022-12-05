@@ -5,7 +5,6 @@ on:
     branches: [ master ]
 permissions:
  id-token: write
- contents: read# This is required for actions/checkout@v2
 
 name: mdh-app
 
