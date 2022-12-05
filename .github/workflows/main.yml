@@ -3,8 +3,10 @@ on:
     branches: [ master ]
   workflow_dispatch:
     branches: [ master ]
+    
 permissions:
  id-token: write
+ contents: read# This is required for actions/checkout@v2
 
 name: mdh-app
 
@@ -20,13 +22,9 @@ jobs:
     - name: configureawscredentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-         role-to-assume: arn:aws:iam::527377329283:role/githubRoleAccess
-         role-session-name: samplerolesession
-         aws-region: us-west-2
-
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+       role-to-assume: arn:aws:iam::527377329283:role/githubRoleAccess
+       role-session-name: samplerolesession
+       aws-region: us-west-2
 
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
