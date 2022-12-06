@@ -26,6 +26,7 @@ jobs:
        aws-region: us-west-2
 
     - name: Build, tag, and push the image to Amazon ECR
+      working-directory: ./
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -37,3 +38,4 @@ jobs:
         echo "Pushing image to ECR..."
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
